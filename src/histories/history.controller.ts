@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { authenticateJWT } from '../auth/auth.middleware';
 import { HistoryService } from './history.service';
+import { simulateDiagnosis } from '../utils/diagnosis'; // Simulador de diagnóstico
 
 const router = Router();
 
@@ -23,6 +24,31 @@ router.post('/', async (req: any, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+// Simula un diagnóstico basado en los síntomas del historial
+router.post('/:id/suggest-diagnosis', (req, res, next) => {
+    (async () => {
+      try {
+        const history = await HistoryService.getOne((req as any).userId, Number(req.params.id));
+  
+        if (!history) {
+          return res.status(404).json({ error: 'Historial no encontrado' });
+        }
+  
+        const { symptoms } = history;
+        const suggestion = simulateDiagnosis(symptoms);
+  
+        return res.json({
+          symptoms,
+          suggestedDiagnosis: suggestion
+        });
+      } catch (error: any) {
+        res.status(500).json({ error: error.message });
+      }
+    })().catch(next);
+  });
+  
+  
 
 // Obtener todos los historiales del usuario autenticado
 router.get('/', async (req: any, res) => {

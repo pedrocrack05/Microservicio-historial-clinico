@@ -14,3 +14,10 @@ dist/
 .idea/
 .vscode/
 *.log
+
+# Docker-related files
+*.local
+docker-compose.override.yml
+
+# Evita subir archivos de volúmenes montados (si los usas localmente)
+volumes/

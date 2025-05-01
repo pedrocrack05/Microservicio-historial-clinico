@@ -157,6 +157,27 @@
         "response": []
       },
       {
+        "name": "Sugerir diagnóstico",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}",
+              "type": "text"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:3000/histories/1/suggest-diagnosis",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["histories", "1", "suggest-diagnosis"]
+          }
+        },
+        "response": []
+      },      
+      {
         "name": "Eliminar historial",
         "request": {
           "method": "DELETE",
