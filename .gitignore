@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+
+# Env
+.env
+
+# Prisma
+.prisma/
+.env.test
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.log
